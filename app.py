@@ -11,7 +11,22 @@ import os
 
 app = Flask(__name__)
 
+load_dotenv()
 
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+
+embeddings = download_embeddings()
+
+index_name = "medical-chatbot"
+
+docsearch = PineconeVectorStore.from_existing_index(
+    index_name=index_name,
+    embedding=embeddings
+)
 
 
 
