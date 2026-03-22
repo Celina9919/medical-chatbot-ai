@@ -14,6 +14,7 @@ os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 extracted_data = load_pdf_files(data='medical-chatbot-ai/data/')
+web_docs = load_medlineplus_docs(limit=20)   # your notebook function
 filter_data = filter_to_minimal_docs(extracted_data)
 text_chunks = text_splitter(filter_data)
 
