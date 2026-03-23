@@ -8,7 +8,6 @@ sentence-transformers==4.1.0
 
 langchain==0.3.26
 langchain-community==0.3.26
-langchain-classic
 langchain-google-genai
 langchain-pinecone
 pinecone
