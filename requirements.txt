@@ -8,6 +8,6 @@ sentence-transformers==4.1.0
 
 langchain==0.3.26
 langchain-community==0.3.26
-langchain-openai==0.3.24
+langchain-google-genai==gemini-2.5-flash
 langchain-pinecone
-langchain-google-genai
+pinecone
