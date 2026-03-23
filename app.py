@@ -16,8 +16,11 @@ load_dotenv()
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
-os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+if not PINECONE_API_KEY:
+    raise RuntimeError("Missing PINECONE_API_KEY")
+
+if not GOOGLE_API_KEY:
+    raise RuntimeError("Missing GOOGLE_API_KEY")
 
 embeddings = download_embeddings()
 
