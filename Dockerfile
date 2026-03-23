@@ -1,16 +1,10 @@
 FROM python:3.11-slim
 
 WORKDIR /app
-
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-
 COPY . /app
 
-# Expose port
-EXPOSE 8080
+# Install dependencies
+RUN pip install -r requirements.txt
 
 # Run the app
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
+CMD ["python3", "app.py"]
