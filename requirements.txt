@@ -8,6 +8,10 @@ sentence-transformers==4.1.0
 
 langchain==0.3.26
 langchain-community==0.3.26
-langchain-google-genai
-langchain-pinecone
+langchain-google-genai==4.2.1
+langchain-pinecone== 0.2.13
 pinecone
+langchain-pinecone==0.2.8 
+langchain-openai==0.3.24
+langchain-community==0.3.26
+-e .
