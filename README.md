@@ -2,6 +2,10 @@
 
 A RAG-based medical chatbot powered by Google Gemini, LangChain, and Pinecone. Ask medical questions and get accurate answers retrieved from a medical knowledge base.
 
+## Demo
+
+![Medical AI Chatbot Demo](https://res.cloudinary.com/dekgqo2qn/image/upload/v1774529646/demo_cura_gif_izadaa.gif)
+
 ## Tech Stack
 
 - **Backend:** Python, Flask
