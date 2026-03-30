@@ -36,18 +36,21 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Pull latest Docker image
+        shell: powershell
         run: |
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
 
       - name: Stop and remove existing container
+        shell: powershell
         run: |
-          docker stop medical-chatbot || true
-          docker rm medical-chatbot || true
+          docker stop medical-chatbot 2>$null; $true
+          docker rm medical-chatbot 2>$null; $true
 
       - name: Run Docker Image to serve users
+        shell: powershell
         run: |
-          docker run -d --name medical-chatbot \
-            -e PINECONE_API_KEY="${{ secrets.PINECONE_API_KEY }}" \
-            -e GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}" \
-            -p 8080:8080 \
+          docker run -d --name medical-chatbot `
+            -e PINECONE_API_KEY="${{ secrets.PINECONE_API_KEY }}" `
+            -e GOOGLE_API_KEY="${{ secrets.GOOGLE_API_KEY }}" `
+            -p 8080:8080 `
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
