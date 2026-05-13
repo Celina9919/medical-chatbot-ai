@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
@@ -10,11 +11,18 @@ load_dotenv()
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
+if not PINECONE_API_KEY or not GOOGLE_API_KEY:
+    raise RuntimeError(
+        "Missing required environment variables. Set PINECONE_API_KEY and GOOGLE_API_KEY."
+    )
+
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
-extracted_data = load_pdf_files(data='medical-chatbot-ai/data/')
-web_docs = load_medlineplus_docs(limit=20)   # your notebook function
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+
+extracted_data = load_pdf_files(data=str(DATA_DIR))
 filter_data = filter_to_minimal_docs(extracted_data)
 text_chunks = text_splitter(filter_data)
 

@@ -16,6 +16,11 @@ load_dotenv()
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
+if not PINECONE_API_KEY or not GOOGLE_API_KEY:
+    raise RuntimeError(
+        "Missing required environment variables. Set PINECONE_API_KEY and GOOGLE_API_KEY."
+    )
+
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
